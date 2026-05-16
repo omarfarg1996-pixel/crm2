@@ -1,0 +1,15 @@
+# Commerce AI Core - PNPM Workspace Configuration
+# يحدد حزم العمل (workspaces) في المشروع
+
+packages:
+  # Frontend application
+  - 'apps/web'
+  
+  # Shared packages
+  - 'packages/*'
+  
+  # Exclude node_modules and build directories
+  - '!**/node_modules'
+  - '!**/.next'
+  - '!**/dist'
+  - '!**/build'
