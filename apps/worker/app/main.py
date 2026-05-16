@@ -1,41 +1,46 @@
 """
-Commerce AI Core - Worker Service
-
-Background job processor باستخدام Celery.
-يعالج المهام غير المتزامنة مثل:
-- إرسال emails
-- معالجة webhooks
-- sync البيانات
-- تقارير مجدولة
-
-Phase 02: Skeleton فقط
+Commerce AI Core - Background Worker Service
+خدمة المعالجة الخلفية للمهام غير المتزامنة
 """
 
-from fastapi import FastAPI, status
-from fastapi.responses import JSONResponse
+from fastapi import FastAPI
+from contextlib import asynccontextmanager
+import logging
+from typing import Dict, Any
+
+logging.basicConfig(
+    level="INFO",
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+)
+logger = logging.getLogger(__name__)
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """إدارة دورة حياة خدمة الـ Worker"""
+    logger.info("🔧 Starting Commerce AI Core Worker...")
+    yield
+    logger.info("🛑 Stopping Commerce AI Core Worker...")
+
 
 app = FastAPI(
-    title="Commerce AI Core - Worker",
-    description="Background job processor",
-    version="0.1.0",
+    title="Commerce AI Core Worker",
+    description="Background worker for async task processing",
+    version="1.0.0",
+    lifespan=lifespan,
 )
 
 
-@app.get("/health", tags=["Health"])
-async def health_check() -> dict:
-    """فحص صحة الخدمة"""
+@app.get("/health")
+async def health_check() -> Dict[str, Any]:
+    """فحص صحة خدمة الـ Worker"""
     return {
         "status": "healthy",
         "service": "commerce-ai-core-worker",
-        "version": "0.1.0",
+        "version": "1.0.0",
     }
 
 
-@app.get("/", tags=["Root"])
-async def root() -> dict:
-    """نقطة الدخول الرئيسية"""
-    return {
-        "name": "Commerce AI Core Worker",
-        "version": "0.1.0",
-        "description": "Background job processor",
-    }
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("main:app", host="0.0.0.0", port=8001)

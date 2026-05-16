@@ -1,0 +1,58 @@
+# Qdrant Configuration for Commerce AI Core
+# Vector database for AI memory and semantic search
+
+# Service configuration
+server:
+  # Host for REST API
+  host: 0.0.0.0
+  # Port for HTTP communication
+  http_port: 6333
+  # Port for gRPC communication
+  grpc_port: 6334
+
+# Storage configuration
+storage:
+  # Path to storage directory
+  storage_path: /qdrant/storage
+  # Path to snapshots directory
+  snapshots_path: /qdrant/snapshots
+  
+  # Performance settings
+  on_disk_payload: false
+  optimizers:
+    # Minimum number of vectors in segment to trigger optimization
+    indexing_threshold: 20000
+    # Maximum number of vectors to keep for deleted points
+    max_segment_size: 1000000
+    # Minimum size of a segment to be considered for merging
+    memmap_threshold: 100000
+  
+  # HNSW index configuration (for approximate nearest neighbor search)
+  hnsw_index:
+    # Number of connections per layer
+    m: 16
+    # Number of neighbors to consider during construction
+    ef_construct: 100
+    # Enable full payload indexing
+    full_scan_threshold: 10000
+
+# Performance tuning
+performance:
+  # Maximum number of concurrent searches
+  max_search_threads: 4
+  # Timeout for search operations (seconds)
+  search_timeout_sec: 30
+
+# Logging
+log_level: INFO
+
+# Authentication (disabled for development, enable in production)
+# auth:
+#   api_key: your-secret-api-key
+
+# Cluster mode (disabled for single-node development)
+cluster:
+  enabled: false
+
+# Telemetry (disabled for privacy)
+telemetry_disabled: true

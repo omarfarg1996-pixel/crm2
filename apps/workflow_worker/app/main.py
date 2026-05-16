@@ -1,40 +1,39 @@
 """
-Commerce AI Core - Workflow Worker Service
-
-Temporal workflow and activities executor.
-يشغل workflows طويلة الأمد مثل:
-- Retention campaigns
-- Follow-up sequences
-- Order confirmation flows
-- Human approval workflows
-
-Phase 02: Skeleton فقط
+Commerce AI Core - Temporal Workflow Worker
+عامل سير العمل المؤقت للتنفيذ الموثوق
 """
 
-from fastapi import FastAPI
+import asyncio
+import logging
+from typing import Dict, Any
 
-app = FastAPI(
-    title="Commerce AI Core - Workflow Worker",
-    description="Temporal workflow executor",
-    version="0.1.0",
+logging.basicConfig(
+    level="INFO",
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 )
+logger = logging.getLogger(__name__)
 
 
-@app.get("/health", tags=["Health"])
-async def health_check() -> dict:
-    """فحص صحة الخدمة"""
-    return {
-        "status": "healthy",
-        "service": "commerce-ai-core-workflow-worker",
-        "version": "0.1.0",
-    }
+async def main():
+    """النقطة الرئيسية لدخول عامل سير العمل"""
+    logger.info("⚙️ Starting Commerce AI Core Workflow Worker...")
+    logger.info("Connecting to Temporal cluster...")
+    
+    # TODO: في Phase 15 سيتم إضافة:
+    # 1. الاتصال بـ Temporal
+    # 2. تسجيل الـ Workflows
+    # 3. تسجيل الـ Activities
+    # 4. بدء تشغيل الـ Worker
+    
+    logger.info("Workflow Worker is ready (placeholder)")
+    
+    # Keep the worker running
+    try:
+        while True:
+            await asyncio.sleep(3600)
+    except KeyboardInterrupt:
+        logger.info("Shutting down Workflow Worker...")
 
 
-@app.get("/", tags=["Root"])
-async def root() -> dict:
-    """نقطة الدخول الرئيسية"""
-    return {
-        "name": "Commerce AI Core Workflow Worker",
-        "version": "0.1.0",
-        "description": "Temporal workflow executor",
-    }
+if __name__ == "__main__":
+    asyncio.run(main())
