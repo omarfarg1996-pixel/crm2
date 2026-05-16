@@ -1,0 +1,62 @@
+# Temporal Dynamic Configuration for Development
+# This configuration enables advanced features for local development
+
+limit.maxIDLength:
+  value: 255
+  constraints: {}
+
+system.forceSearchAttributesCacheRefreshOnRead:
+  value: true
+  constraints: {}
+
+frontend.enableServerVersionCheck:
+  value: false
+  constraints: {}
+
+history.enableTimerLazyLoading:
+  value: true
+  constraints: {}
+
+history.defaultActivityRetryPolicy:
+  value:
+    initialInterval: 1s
+    maximumInterval: 10s
+    maximumAttempts: 3
+    backoffCoefficient: 2.0
+  constraints: {}
+
+history.defaultWorkflowRetryPolicy:
+  value:
+    initialInterval: 1s
+    maximumInterval: 10s
+    maximumAttempts: 3
+    backoffCoefficient: 2.0
+  constraints: {}
+
+frontend.enableListWorkflow:
+  value: true
+  constraints: {}
+
+frontend.visibilityOpenMaxSQLJoin:
+  value: 10
+  constraints: {}
+
+history.workflowTaskTimeout:
+  value: 60s
+  constraints: {}
+
+history.activityMaxScheduleToStartTimeoutForRetry:
+  value: 300s
+  constraints: {}
+
+history.defaultWorkflowTaskTimeout:
+  value: 10s
+  constraints: {}
+
+persistencesampleRate:
+  value: 0.01
+  constraints: {}
+
+enableAuthorization:
+  value: false
+  constraints: {}

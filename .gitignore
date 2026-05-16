@@ -1,63 +1,44 @@
 ```
 # Dependencies
 node_modules/
-.pnpm-store/
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-.Python
-venv/
-env/
-ENV/
 .venv/
-env.bak/
-venv.bak/
+venv/
+__pycache__/
+.mypy_cache/
+.pytest_cache/
 
-# Build outputs
+# Build artifacts
 dist/
 build/
 target/
-*.egg-info/
-.tox/
-.nox/
+*.pyc
+*.o
+*.obj
+*.so
+*.dll
+*.exe
 
-# Environment variables
+# Environment
 .env
 .env.local
-.env.*
-!.env.example
+*.env.*
 
-# IDE specific
+# Editors
 .vscode/
 .idea/
 *.swp
 *.swo
-*~
-.DS_Store
-Thumbs.db
+*.tmp
 
 # Logs
 *.log
-logs/
-tmp/
-temp/
-
-# Python specific
-.pytest_cache/
-.mypy_cache/
-.coverage
-htmlcov/
-*.so
-
-# Node.js specific
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Docker
-.dockerignore
 
 # Coverage
 coverage/
+htmlcov/
+.coverage
+
+# OS
+.DS_Store
+Thumbs.db
 ```
